@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>My Portfolio - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to My Portfolio</h1>
-    <a href="about.html">About Me</a>
+    <header>
+        <nav class="nav">
+            <a href="index.html" class="logo">My Portfolio</a>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Hello, I'm <span class="accent">Your Name</span></h1>
+            <p>Welcome to my personal portfolio website. Explore to learn more about me.</p>
+            <p class="note">This site is automatically built & deployed by a Jenkins Pipeline.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Your Name. Built & deployed with Jenkins.</p>
+    </footer>
 </body>
 </html>
