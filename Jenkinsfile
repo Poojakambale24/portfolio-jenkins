@@ -11,23 +11,23 @@ pipeline {
         stage('Validate') {
             steps {
                 echo "Validation placeholder: add HTML/CSS checks here"
-                bat 'echo Running on Windows node'
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-                    bat '''
-                    echo Deploying to C:\\deploy\\portfolio
+                powershell '''
+                    Write-Host "Deploying to C:\\deploy\\portfolio"
 
-                    if exist C:\\deploy\\portfolio rmdir /S /Q C:\\deploy\\portfolio
-                    mkdir C:\\deploy\\portfolio
+                    if (Test-Path "C:\\deploy\\portfolio") {
+                        Remove-Item -Recurse -Force "C:\\deploy\\portfolio"
+                    }
 
-                    xcopy /E /Y "%WORKSPACE%\\*.html" "C:\\deploy\\portfolio\\"
-                    xcopy /E /Y "%WORKSPACE%\\*.css" "C:\\deploy\\portfolio\\"
-                    '''
-                }
+                    New-Item -ItemType Directory -Force -Path "C:\\deploy\\portfolio"
+
+                    Copy-Item -Path "$env:WORKSPACE\\*.html" -Destination "C:\\deploy\\portfolio" -Force
+                    Copy-Item -Path "$env:WORKSPACE\\*.css" -Destination "C:\\deploy\\portfolio" -Force
+                '''
             }
         }
 
